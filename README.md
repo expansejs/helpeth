@@ -1,24 +1,24 @@
-# helpeth
+# helpexp
 
-[![NPM Package](https://img.shields.io/npm/v/helpeth.svg?style=flat-square)](https://www.npmjs.org/package/helpeth)
-[![Gitter](https://img.shields.io/gitter/room/ethereum/ethereumjs-lib.svg?style=flat-square)](https://gitter.im/ethereum/ethereumjs-lib)
+[![NPM Package](https://img.shields.io/npm/v/helpexp.svg?style=flat-square)](https://www.npmjs.org/package/helpexp)
 
-Help (with) Ethereum. Purists' commandline tool for key and transaction management.
+Based On [helpeth](http://github.com/ethereumjs/helpeth)
+Help (with) Expanse. Purists' commandline tool for key and transaction management.
 
-It uses [ethereumjs-wallet](https://github.com/axic/ethereumjs-wallet) and [ethereumjs-tx](https://github.com/ethereumjs/ethereumjs-tx).
+It uses [expansejs-wallet](https://github.com/expansejs/expansejs-wallet) and [expansejs-expansejs](https://github.com/expansejs/expansejs-tx).
 
 ## Installation
 
-Install it as a global package: `npm install -g helpeth`
+Install it as a global package: `npm install -g helpexp`
 
 It uses [secp256k1](https://github.com/cryptocoinjs/secp256k1-node) for the cryptography. Make sure to have either *OpenSSL* or *GMP* installed.
 
 ## How to use
 
-See the help output with `helpeth --help`:
+See the help output with `helpexp --help`:
 
 ```
-Usage: helpeth [command]
+Usage: helpexp [command]
 
 Commands:
   signMessage <message>                     Sign a message
@@ -52,7 +52,7 @@ Options:
 ### Generate a new key
 
 ```
-$ helpeth keyGenerate
+$ helpexp keyGenerate
 Address: 0xe0defb92145fef3c3a945637705fafd3aa74a241
 Address (checksum): 0xe0DefB92145FeF3c3a945637705fAfd3AA74a241
 ICAP: XE82 Q9ML VOQY V5TD N4MF MK9U KKHS JU9N 9S1
@@ -63,7 +63,7 @@ Private key: 0xba1488fd638adc2e9f62fc70d41ff0ffc0e8d32ef6744d801987bc3ecb6a0953
 ### Generate a new key and save as V3 keystore file
 
 ```
-$ helpeth --password 'Use --password-prompt instead for security' keyGenerate v3
+$ helpexp --password 'Use --password-prompt instead for security' keyGenerate v3
 Address: 0x15f2f3e0f2d74ea7b185fc12f24cb4f402cc96d0
 Address (checksum): 0x15F2f3e0F2D74eA7B185fC12F24cB4F402cC96D0
 ICAP: XE53 2KAS Y050 UIFI VB1J 2636 IKXC 4QIP SK0
@@ -74,7 +74,7 @@ Key saved as UTC--2016-03-17T19-06-57.064Z--15f2f3e0f2d74ea7b185fc12f24cb4f402cc
 ### Print details of an existing keyfile
 
 ```
-$ helpeth --password 'Use --password-prompt instead for security' --keyfile UTC--2016-03-17T19-06-57.064Z--15f2f3e0f2d74ea7b185fc12f24cb4f402cc96d0 --show-private keyDetails
+$ helpexp --password 'Use --password-prompt instead for security' --keyfile UTC--2016-03-17T19-06-57.064Z--15f2f3e0f2d74ea7b185fc12f24cb4f402cc96d0 --show-private keyDetails
 Address: 0x15f2f3e0f2d74ea7b185fc12f24cb4f402cc96d0
 Address (checksum): 0x15F2f3e0F2D74eA7B185fC12F24cB4F402cC96D0
 ICAP: XE53 2KAS Y050 UIFI VB1J 2636 IKXC 4QIP SK0
@@ -85,7 +85,7 @@ Private key: 0x71a7f0e2ef1b7ff501b65a1650d48b8d5521fadc9539eec146d4faa6f5ca9aca
 ### Sign a message
 
 ```
-$ helpeth --password 'Use --password-prompt instead for security' --keyfile UTC--2016-03-17T19-06-57.064Z--15f2f3e0f2d74ea7b185fc12f24cb4f402cc96d0 signMessage 'Hello World'
+$ helpexp --password 'Use --password-prompt instead for security' --keyfile UTC--2016-03-17T19-06-57.064Z--15f2f3e0f2d74ea7b185fc12f24cb4f402cc96d0 signMessage 'Hello World'
 Input message: Hello World
 Message hash (Keccak): 0x592fa743889fc7f92ac2a37bb1f5ba1daf2a5c84741ca0e0061d243a2e6707ba
 The signature: 0x167760997a69e225c0668e6761cd20cac70f3a6ace29fe2d287c3003daf6972b10d158a47e8f064cf982a3defdf236247c41249dbfb0fb81f0d126c26a94971d01
@@ -94,7 +94,7 @@ The signature: 0x167760997a69e225c0668e6761cd20cac70f3a6ace29fe2d287c3003daf6972
 ### Sign a transaction
 
 ```
-$ helpeth --password 'Use --password-prompt instead for security' --keyfile UTC--2016-03-17T19-06-57.064Z--15f2f3e0f2d74ea7b185fc12f24cb4f402cc96d0 createTx 0x1 0xe0defb92145fef3c3a945637705fafd3aa74a241 "1 eth" 0x0 21000 "20 Gwei"
+$ helpexp --password 'Use --password-prompt instead for security' --keyfile UTC--2016-03-17T19-06-57.064Z--15f2f3e0f2d74ea7b185fc12f24cb4f402cc96d0 createTx 0x1 0xe0defb92145fef3c3a945637705fafd3aa74a241 "1 eth" 0x0 21000 "20 Gwei"
 Nonce: 0x1
 To: 0xe0defb92145fef3c3a945637705fafd3aa74a241
 Value: 0xde0b6b3a7640000
@@ -107,7 +107,7 @@ The signed transaction: 0xf86c018504a817c80082520894e0defb92145fef3c3a945637705f
 ### Parse a transaction
 
 ```
-$ ./helpeth parseTx 0xf86c018504a817c80082520894e0defb92145fef3c3a945637705fafd3aa74a241880de0b6b3a7640000001ba01893f2731799dc436da31e092f75bece7bfbdb4942b60b106d61ec06f143aed2a075548818010ccd7fd3e3dd6172f072d4dec19c8956c735bdd34b4aea809ff6be
+$ ./helpexp parseTx 0xf86c018504a817c80082520894e0defb92145fef3c3a945637705fafd3aa74a241880de0b6b3a7640000001ba01893f2731799dc436da31e092f75bece7bfbdb4942b60b106d61ec06f143aed2a075548818010ccd7fd3e3dd6172f072d4dec19c8956c735bdd34b4aea809ff6be
 Signed by: 0x15f2f3e0f2d74ea7b185fc12f24cb4f402cc96d0
 Nonce: 0x01
 To: 0xe0defb92145fef3c3a945637705fafd3aa74a241
